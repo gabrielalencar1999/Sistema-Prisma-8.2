@@ -1,0 +1,199 @@
+	p, h1, h2, h3, h4, form, ul, li, body {
+
+	margin: 0px;
+
+	padding: 0px;
+
+
+
+	}
+
+body {  background-color: #E4E7E9; }
+
+	 td{
+
+	   
+
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+
+		font-size: 12px;		
+
+		margin: 0px;
+
+		scrollbar-face-color: #DDEFE6;
+
+		scrollbar-shadow-color: #387656;
+
+		scrollbar-arrow-color: #295D43;
+
+		scrollbar-highlight-color: #FFF;
+
+		scrollbar-base-color: #62A181;
+
+		scrollbar-darkshadow-color: #286143;
+
+		}
+
+	
+
+	a {
+
+		color: #004F22;
+
+		text-decoration: none;
+
+	}
+
+
+
+	a:hover {
+
+		text-decoration: underline;
+
+	}
+
+
+
+
+
+.titulo{ font-family:Verdana, Arial, Helvetica, sans-serif;
+
+	color:#000000;	font-size:11px;font-weight: bold;			
+
+	}
+
+	
+
+.label{ font-family:Verdana, Arial, Helvetica, sans-serif;
+
+	color:#000000;	font-size:12px;font-weight:normal; background-color:#EFF0F1;			
+
+	}
+
+.titgrid{ font-family:Verdana, Arial, Helvetica, sans-serif;
+
+	color:#003366;	font-size:11px;font-weight:normal; background-color:#D5F1FF;			
+
+	}
+
+.fundogrid{ font-family:Verdana, Arial, Helvetica, sans-serif;
+
+	color: #000000;	font-size:11px;font-weight:normal; background-color:#FFFFFF;			
+
+	}
+
+	
+
+	
+
+.rolagem { 
+
+     width:770px; height:430px;
+
+     overflow: auto;
+
+}
+
+.rolagem2 { 
+
+width:980px; height:430px;
+
+overflow: auto;
+
+}
+
+		
+
+.fundobutton {
+
+		background-color:#D2DFE6;
+
+		height:30px;
+
+		
+
+		}
+
+		
+
+.image {border:0px; text-decoration: none;}
+
+	a.image {border:0px; text-decoration: none}
+
+	a.image:hover {border:0px;text-decoration: none}
+
+	a.image:active {border:0px;text-decoration: none}
+
+
+
+	.button {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+	font-style: normal;
+
+	font-weight: bold;
+
+	font-size: 11px;
+
+	height:20px;	
+
+	background: #345675;
+
+	color: #FFFFFF;
+
+	border-style: solid;
+
+	border-top-width: 1px; border-right-width: 1px; border-bottom-width: 2px; border-left-width: 1px;
+
+	border: 2px;
+
+	}
+
+	
+
+	.campo {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+	font-style: normal;
+
+	/*font-weight: bold;*/
+
+	font-size: 12px;
+
+	background:  #FFFFFF;	
+
+	border-style:solid; border-color:#88a0bf;
+
+	border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; 
+	height:21px;
+
+	} 
+
+	
+
+	.link {
+
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+
+	font-style: normal;
+
+	font-weight: bold;
+
+	font-size: 11px;	
+
+	color: #FFFFFF;
+
+	border-style: solid;	
+
+	} 
+
+	
+
+
+
+
+
+
+

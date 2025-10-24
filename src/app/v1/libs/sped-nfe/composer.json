@@ -1,0 +1,22 @@
+{
+    "name": "gestorpet/sped-nfe",
+    "description": "API para geração e comunicação da NFe e NFCe com as SEFAZ autorizadoras.",
+    "type": "library",
+    "require": {
+        "nfephp-org/sped-nfe": "^5.0",
+        "nfephp-org/sped-common": "^5.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roberto L. Machado",
+            "email": "linux.rlm@gmail.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "NFePHP\\NFe\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

@@ -1,0 +1,22 @@
+
+{
+    "nome": "Jo\u00e3o Silva",
+    "email": "joao.silva@example.com",
+    "idade": 30,
+    "endereco": {
+        "rua": "Rua das Flores",
+        "numero": 123,
+        "cidade": "S\u00e3o Paulo",
+        "estado": "SP"
+    },
+    "telefones": [
+        {
+            "tipo": "celular",
+            "numero": "(11) 98765-4321"
+        },
+        {
+            "tipo": "residencial",
+            "numero": "(11) 1234-5678"
+        }
+    ]
+}

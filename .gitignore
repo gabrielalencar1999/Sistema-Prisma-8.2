@@ -1,0 +1,5 @@
+**/.idea
+php_errors.log
+**/vendor
+**/logs
+**/.composer

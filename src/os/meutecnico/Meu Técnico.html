@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)https://meutecnico.net.com.br/?sharedtoken=6867892c-c9c8-ce91-08b6-f98e1195672b&operation=map -->
+<html lang="pt-br" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script async="" src="./Meu Técnico_files/analytics.js.download"></script><script data-ionic="inject">
+    (function(w){var i=w.Ionic=w.Ionic||{};i.version='^3.4.2';i.angular='4.3.4';i.ionicNative='2.4.1';i.staticDir='build/';})(window);
+  </script>
+
+  <script>
+    var domain = location.hostname;
+    var DYNATRACEID = null;
+    var script = null;
+
+    switch(domain){
+
+      case "timeline.meutecnico.ecare-pet.aws.clarowcs.cloud":
+        DYNATRACEID = "4c0c5520-d906-4400-91e9-538ca9a0e160/5000efdabe846262";
+        break;
+
+      case "timeline.meutecnico.ecare-prd.aws.clarowcs.cloud":
+      case "meutecnico.net.com.br":
+        DYNATRACEID = "89afdcfd-68f5-4edb-9a9a-215e44803e5f/da68d827c742ae15";
+        break;
+
+      default: // localhost, dev, qa
+        DYNATRACEID = "3854e963-249b-47d5-a3a8-f918ef4fad71/4bec7cb3cbe27811";
+        
+    }
+
+    var script = document.createElement("script");
+    script.src = `https://dyna-agentless.clarobrasil.mobi/jstag/managed/${DYNATRACEID}_complete.js`;
+    script.crossOrigin = "anonymous";
+    script.type = "text/javascript";
+    
+    // capturar atributos operatorCode e contractNumber
+    function getParameterByName(name) {
+      var url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    var contractNumber = getParameterByName('contractNumber');
+    var operatorCode = getParameterByName('operatorCode');
+
+    function setUserTag() {
+      if (dtrum && operatorCode && contractNumber) dtrum.identifyUser(`${operatorCode}${contractNumber}`);
+    }
+
+    // executar setUserTag quando Dynatrace já estiver carregado
+    script.addEventListener('load',setUserTag);
+
+    window.document.head.append(script);
+
+  </script><script src="./Meu Técnico_files/da68d827c742ae15_complete.js.download" crossorigin="anonymous" type="text/javascript"></script>
+
+  
+  <title>Meu Técnico</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link rel="icon" type="image/x-icon" href="https://meutecnico.net.com.br/assets/icon/favicon/favicon.ico?">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://meutecnico.net.com.br/assets/icon/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://meutecnico.net.com.br/assets/icon/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://meutecnico.net.com.br/assets/icon/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://meutecnico.net.com.br/assets/icon/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://meutecnico.net.com.br/assets/icon/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://meutecnico.net.com.br/manifest.json">
+  <meta name="msapplication-TileColor" content="#E3262E">
+  <meta name="msapplication-TileImage" content="assets/icon/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#E3262E">
+
+  <!-- cordova.js required for cordova apps -->
+  <!--<script src="cordova.js"></script>-->
+
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.debug('service worker installed'))
+        .catch(err => console.debug('Error', err));
+    }
+  </script>-->
+
+  <link href="./Meu Técnico_files/main.css" rel="stylesheet">
+
+  <!-- Google Maps library -->
+  <!--PROD-->
+  <script type="text/javascript" src="./Meu Técnico_files/js">
+  </script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-2698373-39', 'auto');
+
+  </script>
+  <script src="./Meu Técnico_files/jquery-3.1.1.min.js.download"></script>
+  <script src="./Meu Técnico_files/jquery.easing.1.3.js.download"></script>
+  <script src="./Meu Técnico_files/markerAnimate.js.download"></script>
+  <script src="./Meu Técnico_files/SlidingMarker.js.download"></script>
+
+<script type="text/javascript" data-name="TokenSigning">(function() {
+    // Promises
+    var _eid_promises = {};
+    // Turn the incoming message from extension
+    // into pending Promise resolving
+    window.addEventListener("message", function(event) {
+        if (event.source !== window) return;
+        if (event.data.src && (event.data.src === "background.js")) {
+            console.log("Page received: ");
+            console.log(event.data);
+            // Get the promise
+            if (event.data.nonce) {
+                var p = _eid_promises[event.data.nonce];
+                // resolve
+                if (event.data.result === "ok") {
+                    if (event.data.signature !== undefined) {
+                        p.resolve({hex: event.data.signature});
+                    } else if (event.data.version !== undefined) {
+                        p.resolve(event.data.extension + "/" + event.data.version);
+                    } else if (event.data.cert !== undefined) {
+                        p.resolve({hex: event.data.cert});
+                    } else {
+                        console.log("No idea how to handle message");
+                        console.log(event.data);
+                    }
+                } else {
+                    // reject
+                    p.reject(new Error(event.data.result));
+                }
+                delete _eid_promises[event.data.nonce];
+            } else {
+                console.log("No nonce in event msg");
+            }
+        }
+    }, false);
+
+    window.TokenSigning = function() {
+        function nonce() {
+            var val = "";
+            var hex = "abcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 16; i++) val += hex.charAt(Math.floor(Math.random() * hex.length));
+            return val;
+        }
+
+        function messagePromise(msg) {
+            return new Promise(function(resolve, reject) {
+                // amend with necessary metadata
+                msg["nonce"] = nonce();
+                msg["src"] = "page.js";
+                // send message
+                window.postMessage(msg, "*");
+                // and store promise callbacks
+                _eid_promises[msg.nonce] = {
+                    resolve: resolve,
+                    reject: reject
+                };
+            });
+        }
+        this.getCertificate = function(options) {
+            var msg = {type: "CERT", lang: options.lang, filter: options.filter};
+            console.log("getCertificate()");
+            return messagePromise(msg);
+        };
+        this.sign = function(cert, hash, options) {
+            var msg = {type: "SIGN", cert: cert.hex, hash: hash.hex, hashtype: hash.type, lang: options.lang, info: options.info};
+            console.log("sign()");
+            return messagePromise(msg);
+        };
+        this.getVersion = function() {
+            console.log("getVersion()");
+            return messagePromise({
+                type: "VERSION"
+            });
+        };
+    };
+})();</script><meta id="bbafmabaelnnkondpfpjmdklbmfnbmol"><style>@keyframes loading {
+    0% {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.ag-textarea .MuiInputBase-input::-webkit-scrollbar {
+    height: 6px;
+    width: 6px
+}
+
+.ag-textarea .MuiInputBase-input::-webkit-scrollbar-track {
+    background: transparent
+}
+
+.ag-textarea .MuiInputBase-input::-webkit-scrollbar-thumb {
+    background: #dfdfdf;
+    border-radius: 4px
+}
+
+.ag-textarea .MuiInputBase-input::-webkit-scrollbar-thumb:hover {
+    background: #d4d4d4
+}</style><meta id="dcngeagmmhegagicpcmpinaoklddcgon"><script type="text/javascript" charset="UTF-8" src="./Meu Técnico_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./Meu Técnico_files/util.js.download"></script><script type="text/javascript" charset="UTF-8" src="./Meu Técnico_files/geocoder.js.download"></script></head>
+
+<body cz-shortcut-listen="true"><div id="ag-1740140232601"><template shadowrootmode="open"><div style="all: initial;"><div><div role="tooltip" class="base-Popper-root ag-select-popper-css-1z4dyc" style="position: fixed; top: 0px; left: 0px; display: none;"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 ag-select-popper-css-aoeo82"><div class="MuiBox-root ag-select-popper-css-0"><div class="MuiBox-root ag-select-popper-css-1i2n83q"></div><div class="MuiBox-root ag-select-popper-css-644370"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall ag-select-popper-css-1j7qk7u" tabindex="0" type="button"><img src="chrome-extension://bincmiainjofjnhchmcalkanjebghoen/img/icon-38.png" style="width: 22px; height: 22px; border-radius: 4px;"><span class="MuiTouchRipple-root ag-select-popper-css-w0pj6f"></span></button></div></div></div></div></div></div><style><style data-emotion="ag-select-popper-css" data-s=""></style></style></template></div>
+
+  <ion-app class="app-root app-root-md md platform-core enable-hover" ng-version="4.3.4"><div app-viewport=""></div><ng-component class="app-root">
+<ion-nav swipebackenabled="false"><div nav-viewport=""></div><page-timeline class="ion-page show-page" style="z-index: 99;"><ion-header no-border="" class="header header-md">
+  <ion-navbar class="toolbar toolbar-md"><div class="toolbar-background toolbar-background-md"></div><button class="back-button bar-button bar-button-md back-button-md bar-button-default bar-button-default-md" ion-button="bar-button"><span class="button-inner"><ion-icon class="back-button-icon icon icon-md back-button-icon-md ion-md-arrow-back" role="img" aria-label="arrow back"></ion-icon><span class="back-button-text back-button-text-md"></span></span><div class="button-effect"></div></button><!----><div class="toolbar-content toolbar-content-md">
+    
+  </div></ion-navbar>
+</ion-header>
+
+<div class="pOverflowHidden" id="boxFixoVisita" style="display: none;">
+  <img class="pFloatLeft" src="./Meu Técnico_files/iconFixoVisita.png">
+  <div class="pFloatRight" id="txtFixoVisita">
+    <p id="diaVisita">21 de fevereiro - Entre 08:00 e 12:00
+    </p>
+    <p id="endVisita">R FRANCISCO DEROSSO,  3451, SOBRADO 6, CURITIBA/PR<br>CEP
+      81720235</p>
+  </div>
+</div>
+
+<ion-content id="pgStatusVisita" class="content content-md"><div class="fixed-content" style="margin-top: 56px;"></div><div class="scroll-content" style="margin-top: 56px;">
+  <!---->
+  <!----><div>
+
+    <!---->
+
+    <!----><div>
+      <div id="conteudo">
+        <div id="blocoStatusVisita">
+          <img src="./Meu Técnico_files/iconCheckAgendada.png">
+          <div>
+            <!---->
+            <!----><h2>Visita Técnica Agendada!</h2>
+          </div>
+
+          <p>Agora acompanhe todos os passos até chegarmos na sua casa</p>
+
+          <div id="timeLineTempoAgendado">
+            
+            <div class="imgCheck imgCheckBranco pFloatLeft"></div>
+            <div class="linhaTempo"></div>
+          </div>
+        </div>
+
+        <div class="boxLinhaTempo pOverflowHidden">
+          <div class="pFloatRight" id="boxInfoAgendamento">
+            <div id="boxDataVisita">
+              21 de fevereiro
+              <br>Entre 08:00 e 12:00
+            </div>
+          </div>
+
+          
+          <div class="pFloatRight" id="boxContratoTvNet">
+            <div class="txtContratoTv" id="boxContrato">
+              <h3>Contrato: 884/619194859</h3>
+              <!----><p>R FRANCISCO DEROSSO,  3451, SOBRADO 6,
+                CURITIBA/PR<br>CEP 81720235</p>
+              <!---->
+            </div>
+          </div>
+
+          
+
+        </div>
+
+        <!---->
+
+        <div class="blocoDataTempo" id="blocoData">
+          <h2>sexta</h2>
+          <p>21 de fevereiro</p>
+          <div class="bolaTempo imgCheckBranco" style="z-index:1;"></div>
+          <div class="linhaTempo" style="z-index:2;"></div>
+        </div>
+
+        <div>
+          
+          
+          <!----><div>
+            <div class="boxLinhaTempo pOverflowHidden">
+              <div class="blocoPrimeiroHorario pOverflowHidden">
+                <p class="horaLinhaTempo pFloatLeft">08:00</p>
+                <div class="imgCheck imgCheckAtivo"></div>
+                <p class="txtInicioAtendimento pFloatLeft">Início do atendimento.</p>
+              </div>
+              <!---->
+              <div class="pOverflowHidden" id="blocoCaminhoAtivo">
+                <p class="horaLinhaTempo pFloatLeft">09:14</p>
+                <div class="imgCheck imgCheckAtivo"></div>
+                <div class="pFloatRight pOverflowHidden" id="boxCaminhoCasa">
+                  <h3>Estamos a caminho da sua casa!</h3>
+                </div>
+                <div class="boxTecnicoAtivo pFloatRight">
+                  <div class="pOverflowHidden" id="txtTecnico">
+                    <!---->
+                    <!----><img class="pFloatLeft" id="imgAvatar" style="border-radius: 50%" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QBqRXhpZgAATU0AKgAAAAgAAwESAAMAAAABAAEAAAExAAIAAAAQAAAAModpAAQAAAABAAAAQgAAAABTaG90d2VsbCAwLjE4LjAAAAKgAgAJAAAAAQAAARmgAwAJAAAAAQAAAM4AAAAAAAD/4Qn0aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNC40LjAtRXhpdjIiPg0KCTxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+DQoJCTxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIiB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIgZXhpZjpQaXhlbFhEaW1lbnNpb249IjI4MSIgZXhpZjpQaXhlbFlEaW1lbnNpb249IjIwNiIgdGlmZjpJbWFnZVdpZHRoPSIyODEiIHRpZmY6SW1hZ2VIZWlnaHQ9IjIwNiIgdGlmZjpPcmllbnRhdGlvbj0iMSIvPg0KCTwvcmRmOlJERj4NCjwveDp4bXBtZXRhPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgIDw/eHBhY2tldCBlbmQ9J3cnPz7/2wBDAAIBAQIBAQICAgICAgICAwUD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">
+                    <div class="pFloatLeft" id="boxNomeTecnico">
+                      <p>Seu técnico Claro:</p>
+                      <h3>RAFAEL CARBONELL FIGUEREDO</h3>
+                      <p>Matrícula: Z524965</p>
+                      <!---->
+                      <!---->
+                    </div>
+                    <!---->
+                    <!---->
+                  </div>
+                  <!---->
+                  <!----><div>
+                    <div id="tempoChegada">Aguarde, estamos localizando o técnico</div>
+                    <div id="boxMapaInativo">
+                      <img src="./Meu Técnico_files/trajetoIndisponivelSemTitulo.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!---->
+              <div class="boxLinhaTempo pOverflowHidden">
+                <div class="boxTecnicoAtivo pFloatRight">
+                  <div id="boxAtencao">
+                    <h3>Atenção!</h3>
+                    <p>Não se esqueça que o técnico leva em média 1 hora para realizar o atendimento.</p>
+                  </div>
+                </div>
+                <div id="horaFinalAtencao">
+                  <p class="horaLinhaTempo pFloatLeft">13:00</p>
+                  <div class="imgCheck imgCheckInativo"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          <!---->
+          
+          <!---->
+        </div>
+      </div>
+    </div>
+  </div>
+</div></ion-content>
+
+<!---->
+
+<!---->
+</page-timeline><div class="nav-decor"></div></ion-nav>
+</ng-component><div overlay-portal=""></div><div overlay-portal=""></div><div class="loading-portal" overlay-portal=""></div><div class="toast-portal"></div><div class="click-block click-block-enabled"></div></ion-app>
+
+  <!-- The polyfills js is generated during the build process -->
+  <script src="./Meu Técnico_files/polyfills.js.download"></script>
+
+
+  <!-- The bundle js is generated during the build process -->
+  <script src="./Meu Técnico_files/vendor.js.download"></script>
+  <script src="./Meu Técnico_files/main.js.download"></script>
+
+
+
+
+<script src="chrome-extension://bincmiainjofjnhchmcalkanjebghoen/aiscripts/script-main.js"></script></body></html>

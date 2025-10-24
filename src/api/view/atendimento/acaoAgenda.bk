@@ -1,0 +1,461 @@
+<?php
+
+use Database\MySQL;
+
+$pdo = MySQL::acessabd();
+
+function LimpaVariavel($valor){
+    $valor = trim($valor);
+    $valor = str_replace(",", ".", $valor);
+    $valor = str_replace("'", "", $valor);
+    $valor = str_replace("-", "", $valor);
+    $valor = str_replace("/", "", $valor);
+    return $valor;
+}
+
+
+/*
+ * Chama modal altera
+ * */
+if ($acao["acao"] == 0) {
+    try {
+        $statement = $pdo->query("SELECT * FROM ".$_SESSION['BASE'].".agenda WHERE Agenda_ID = '".$_parametros["id-altera"]."'");
+        $retorno = $statement->fetch(\PDO::FETCH_OBJ);
+        ?>
+        <div class="modal-dialog modal-lg text-left">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Incluir Agendamento</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0)" method="post" enctype="multipart/form-data" name="form-altera" id="form-altera">
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="agenda-data">Data Agendamento:</label>
+                                <input type="date" class="form-control" id="agenda-data" name="agenda-data" value="<?=date('Y-m-d',  strtotime($retorno->Agenda_DataAgenda))?>">
+                                <input type="hidden" name="agenda-id" id="agenda-id" value="<?=$retorno->Agenda_ID?>">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="agenda-prioridade">Prioridade:</label>
+                                <select class="form-control" name="agenda-prioridade" id="agenda-prioridade">
+                                    <option value="1" <?=$retorno->Prioridade == '1' ? 'selected' : ''?>>Baixa</option>
+                                    <option value="2" <?=$retorno->Prioridade == '2' ? 'selected' : ''?>>Média</option>
+                                    <option value="3" <?=$retorno->Prioridade == '3' ? 'selected' : ''?>>Alta</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="agenda-situacao">Situação:</label>
+                                <select class="form-control" name="agenda-situacao" id="agenda-situacao">
+                                    <option value="1" <?=$retorno->Agenda_Situacao == '1' ? 'selected' : ''?>>Aberta</option>
+                                    <option value="2" <?=$retorno->Agenda_Situacao == '2' ? 'selected' : ''?>>Encerrada</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="agenda-cliente">Nome/Empresa:</label>
+                                <input type="text" class="form-control" id="agenda-cliente" name="agenda-cliente" value="<?=$retorno->Agenda_NomeCliente?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="agenda-telefone">Telefone:</label>
+                                <input type="text" class="form-control" id="agenda-telefone" name="agenda-telefone" value="<?=$retorno->Agenda_Telefone?>">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="agenda-contato">Contato:</label>
+                                <input type="text" class="form-control" id="agenda-contato" name="agenda-contato" value="<?=$retorno->Agenda_Contato?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="agenda-documento">Documento:</label>
+                                <input type="text" class="form-control" id="agenda-documento" name="agenda-documento" value="<?=$retorno->Agenda_Documento?>">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="agenda-usuario">Usuário:</label>
+                                <select class="form-control" name="agenda-usuario" id="agenda-usuario">
+                                    <?php
+                                    $statement = $pdo->query("SELECT usuario_CODIGOUSUARIO, usuario_LOGIN FROM ".$_SESSION['BASE'].".usuario  ORDER BY usuario_NOME");
+                                    $retorno_usuario = $statement->fetchAll(\PDO::FETCH_OBJ);
+                                    ?>
+                                    <option value="0">Todos</option>
+                                    <?php foreach ($retorno_usuario as $row): ?>
+                                        <option value="<?=$row->usuario_CODIGOUSUARIO?>" <?=$retorno->Agenda_CodUsuario == $row->usuario_CODIGOUSUARIO ? 'selected' : ''?>><?=$row->usuario_LOGIN?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="agenda-documento">Assunto:</label>
+                                <textarea class="form-control" name="agenda-assunto" id="agenda-assunto" cols="30" rows="2"><?=$retorno->Agenda_descricao?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="agenda-documento">Motivo:</label>
+                                <textarea class="form-control" name="agenda-motivo" id="agenda-motivo" cols="30" rows="2"><?=$retorno->Agenda_motivo?></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" data-toggle="modal" data-target="#custom-modal-result" onclick="_altera()">Salvar</button>
+                </div>
+            </div>
+        </div>
+        <?php
+    } catch (PDOException $e) {
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="imagem-carregando">
+                    <h2><?="Erro: " . $e->getMessage()?></h2>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+}
+/*
+ * Cadastra Agendamento
+ * */
+else if ($acao["acao"] == 1) {
+    if (empty($_parametros["agenda-assunto"]) || empty($_parametros["agenda-data"])) {
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                <div class="modal-body" id="imagem-carregando">
+                    <div class="bg-icon pull-request">
+                        <i class="md-5x md-highlight-remove"></i>
+                        <?php if(empty($_parametros["agenda-assunto"]) && empty($_parametros["agenda-data"])): ?>
+                            <h2>Informe a data e assunto do agendamento!</h2>
+                        <?php elseif(empty($_parametros["agenda-data"])): ?>
+                            <h2>Informe a data do agendamento!</h2>
+                        <?php else: ?>
+                            <h2>Informe o assunto do agendamento!</h2>
+                        <?php endif ?>
+                        <p><?=$_parametros['agenda-assunto']?></p>
+                        <button class="btn btn-default waves-effect waves-light m-l-5" tabindex="1" style="display: inline-block;" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    else {
+        $_parametros["agenda-telefone"] = LimpaVariavel($_parametros["agenda-telefone"]);
+        try {
+            date_default_timezone_set('America/Sao_Paulo');
+            $data_cadastro = date("Y-m-d H:i:s", time());
+
+            if ($_parametros["agenda-situacao"] == 2) {
+                $statement = $pdo->prepare("INSERT INTO ". $_SESSION['BASE'] .".agenda (Agenda_Cadastro, Agenda_DataAgenda, Agenda_Encerrado, Agenda_Usuario, Prioridade, Agenda_Situacao, Agenda_NomeCliente, Agenda_Telefone, Agenda_Contato, agenda_usuarioEncerramento, Agenda_Documento, Agenda_CodUsuario, Agenda_descricao, Agenda_motivo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $statement->bindParam(1, $data_cadastro);
+                $statement->bindParam(2, $_parametros["agenda-data"]);
+                $statement->bindParam(3, $data_cadastro);
+                $statement->bindParam(4, $_SESSION['IDUSER']);
+                $statement->bindParam(5, $_parametros["agenda-prioridade"]);
+                $statement->bindParam(6, $_parametros["agenda-situacao"]);
+                $statement->bindParam(7, $_parametros["agenda-cliente"]);
+                $statement->bindParam(8, $_parametros["agenda-telefone"]);
+                $statement->bindParam(9, $_parametros["agenda-contato"]);
+                $statement->bindParam(10, $_SESSION['IDUSER']);
+                $statement->bindParam(11, $_parametros["agenda-documento"]);
+                $statement->bindParam(12, $_parametros["agenda-usuario"]);
+                $statement->bindParam(13, $_parametros["agenda-assunto"]);
+                $statement->bindParam(14, $_parametros["agenda-motivo"]);
+                $statement->execute();
+            }
+            else {
+                $statement = $pdo->prepare("INSERT INTO ". $_SESSION['BASE'] .".agenda (Agenda_Cadastro, Agenda_DataAgenda, Agenda_Usuario, Prioridade, Agenda_Situacao, Agenda_NomeCliente, Agenda_Telefone, Agenda_Contato, Agenda_Documento, Agenda_CodUsuario, Agenda_descricao, Agenda_motivo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $statement->bindParam(1, $data_cadastro);
+                $statement->bindParam(2, $_parametros["agenda-data"]);
+                $statement->bindParam(3, $_SESSION['IDUSER']);
+                $statement->bindParam(4, $_parametros["agenda-prioridade"]);
+                $statement->bindParam(5, $_parametros["agenda-situacao"]);
+                $statement->bindParam(6, $_parametros["agenda-cliente"]);
+                $statement->bindParam(7, $_parametros["agenda-telefone"]);
+                $statement->bindParam(8, $_parametros["agenda-contato"]);
+                $statement->bindParam(9, $_parametros["agenda-documento"]);
+                $statement->bindParam(10, $_parametros["agenda-usuario"]);
+                $statement->bindParam(11, $_parametros["agenda-assunto"]);
+                $statement->bindParam(12, $_parametros["agenda-motivo"]);
+                $statement->execute();
+            }
+            ?>
+            <div class="modal-dialog">
+                <div class="modal-content text-center">
+                    <div class="modal-body" id="imagem-carregando">
+                        <div class="bg-icon pull-request">
+                            <img src="assets/images/small/img_enviado.jpg" alt="image" class="img-responsive center-block" width="200"/>
+                            <i class="fa fa-5x fa-check-circle-o"></i>
+                            <h2>Agendamento Cadastrado!</h2>
+                            <button class="btn btn-default waves-effect waves-light m-l-5" tabindex="1" style="display: inline-block;" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        } catch (PDOException $e) {
+            ?>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="imagem-carregando">
+                        <h2><?="Erro: " . $e->getMessage()?></h2>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+}
+/*
+ * Listar Agendamento
+ * */
+else if ($acao["acao"] == 2) {
+
+    $documento = !empty($_parametros['agenda-documento']) ? " AND Agenda_Documento LIKE '%".$_parametros['agenda-documento']."%'" : '';
+    $prioridade = $_parametros['agenda-prioridade'] != 0 ? " AND Prioridade = '".$_parametros['agenda-prioridade']."'" : '';
+    $situacao = $_parametros['agenda-situacao'] != 0 ? " AND Agenda_Situacao = '".$_parametros['agenda-situacao']."'" : '';
+    $usuario = $_parametros['agenda-usuario'] != 0 ? " AND Agenda_CodUsuario = '".$_parametros['agenda-usuario']."'" : '';
+
+    try {
+        $consultaMov = $pdo->query("SELECT Agenda_ID, Agenda_Documento, Agenda_Cadastro, Agenda_DataAgenda, Agenda_Encerrado, 
+        Agenda_Usuario, Agenda_CodUsuario, Prioridade, Agenda_Situacao, Agenda_descricao, agenda_usuarioEncerramento, usuario_LOGIN 
+        FROM ".$_SESSION['BASE'].".agenda LEFT JOIN ".$_SESSION['BASE'].".usuario ON Agenda_CodUsuario = usuario_CODIGOUSUARIO WHERE Agenda_DataAgenda
+        BETWEEN '".$_parametros['agenda-dataini']."' AND '".$_parametros['agenda-datafim']."' $documento $prioridade $situacao $usuario ORDER BY Agenda_DataAgenda");
+        $retornoMov = $consultaMov->fetchAll(\PDO::FETCH_OBJ);
+        ?>
+        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap " cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="text-left">Assunto</th>
+                <th class="text-center">Data Agenda</th>
+                <th class="text-center">Prioridade</th>
+                <th class="text-center">Documento</th>
+                <th class="text-center">Situação</th>
+                <th class="text-center">Usuário</th>
+                <th class="text-center">Ação</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($retornoMov as $row): ?>
+                <?php
+                    if ($row->Prioridade == 1) {
+                        $style = 'info';
+                        $descricao = 'Baixa';
+                    }
+                    else if ($row->Prioridade == 2) {
+                        $style = 'warning';
+                        $descricao = 'Média';
+                    }
+                    else {
+                        $style = 'danger';
+                        $descricao = 'Alta';
+                    }
+                ?>
+                <tr class="gradeX">
+                    <td class="text-left"><?=utf8_encode(strlen($row->Agenda_descricao) > 39 ? substr($row->Agenda_descricao, 0, 37)."..." : $row->Agenda_descricao)?></td>
+                    <td class="text-center"><?=date('d/m/Y',  strtotime($row->Agenda_DataAgenda))?></td>
+                    <td class="text-center">
+                        <span class="label label-table label-<?=$style?>"><?=$descricao?></span>    
+                    </td>
+                    <td class="text-center"><?=$row->Agenda_Documento?></td>
+                    <td class="text-center">
+                        <span class="label label-table label-<?=$row->Agenda_Situacao == "1" ? "success" : "inverse" ?>"><?=$row->Agenda_Situacao == "1" ? "Aberto" : "Encerrado"?></span>
+                    </td>
+                    <td class="text-center"><?=$row->usuario_LOGIN?></td>
+                    <td class="actions text-center">
+                        <a href="#" class="on-default edit-row" data-toggle="modal" data-target="#custom-modal-alterar" onclick="_buscadados(<?=$row->Agenda_ID?>)"><i class="fa fa-pencil"></i></a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+        <?php
+    } catch (PDOException $e) {
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="imagem-carregando">
+                    <h2><?="Erro: " . $e->getMessage()?></h2>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+}
+/*
+ * Atualiza Agenda
+ * */
+else if ($acao["acao"] == 3) {
+    if (empty($_parametros["agenda-assunto"])) {
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                <div class="modal-body" id="imagem-carregando">
+                    <div class="bg-icon pull-request">
+                        <i class="md-5x md-highlight-remove"></i>
+                        <h2>Informe o assunto do agendamento!</h2>
+                        <button class="btn btn-default waves-effect waves-light m-l-5" tabindex="1" style="display: inline-block;" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    else {
+        $_parametros["agenda-telefone"] = LimpaVariavel($_parametros["agenda-telefone"]);
+        try {
+            $consulta = $pdo->query("SELECT Agenda_Situacao FROM ". $_SESSION['BASE'] .".agenda WHERE Agenda_ID = '".$_parametros["agenda-id"]."'");
+            $retorno = $consulta->fetch(\PDO::FETCH_OBJ);
+
+            if ($retorno->Agenda_Situacao == 1 && $_parametros["agenda-situacao"] == 2) {
+                date_default_timezone_set('America/Sao_Paulo');
+                $data_encerrado = date("Y-m-d H:i:s", time());
+
+                $statement = $pdo->prepare("UPDATE ". $_SESSION['BASE'] .".agenda SET Agenda_DataAgenda = ?, Agenda_Encerrado = ?, Prioridade = ?, Agenda_Situacao = ?, Agenda_NomeCliente = ?, Agenda_Telefone = ?, Agenda_Contato = ?, agenda_usuarioEncerramento = ?, Agenda_Documento = ?, Agenda_CodUsuario = ?, Agenda_descricao = ?, Agenda_motivo = ? WHERE Agenda_ID = ?");
+                $statement->bindParam(1, $_parametros["agenda-data"]);
+                $statement->bindParam(2, $data_encerrado);
+                $statement->bindParam(3, $_parametros["agenda-prioridade"]);
+                $statement->bindParam(4, $_parametros["agenda-situacao"]);
+                $statement->bindParam(5, $_parametros["agenda-cliente"]);
+                $statement->bindParam(6, $_parametros["agenda-telefone"]);
+                $statement->bindParam(7, $_parametros["agenda-contato"]);
+                $statement->bindParam(8, $_SESSION['IDUSER']);
+                $statement->bindParam(9, $_parametros["agenda-documento"]);
+                $statement->bindParam(10, $_parametros["agenda-usuario"]);
+                $statement->bindParam(11, $_parametros["agenda-assunto"]);
+                $statement->bindParam(12, $_parametros["agenda-motivo"]);
+                $statement->bindParam(13, $_parametros["agenda-id"]);
+                $statement->execute();
+                ?>
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-body" id="imagem-carregando">
+                            <div class="bg-icon pull-request">
+                                <img src="assets/images/small/img_enviado.jpg" alt="image" class="img-responsive center-block" width="200"/>
+                                <i class="fa fa-5x fa-check-circle-o"></i>
+                                <h2>Agendamento Encerrado!</h2>
+                                <button class="btn btn-default waves-effect waves-light m-l-5" tabindex="1" style="display: inline-block;" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+            else {
+                $statement = $pdo->prepare("UPDATE ". $_SESSION['BASE'] .".agenda SET Agenda_DataAgenda = ?, Prioridade = ?, Agenda_Situacao = ?, Agenda_NomeCliente = ?, Agenda_Telefone = ?, Agenda_Contato = ?, Agenda_Documento = ?, Agenda_CodUsuario = ?, Agenda_descricao = ?, Agenda_motivo = ? WHERE Agenda_ID = ?");
+                $statement->bindParam(1, $_parametros["agenda-data"]);
+                $statement->bindParam(2, $_parametros["agenda-prioridade"]);
+                $statement->bindParam(3, $_parametros["agenda-situacao"]);
+                $statement->bindParam(4, $_parametros["agenda-cliente"]);
+                $statement->bindParam(5, $_parametros["agenda-telefone"]);
+                $statement->bindParam(6, $_parametros["agenda-contato"]);
+                $statement->bindParam(7, $_parametros["agenda-documento"]);
+                $statement->bindParam(8, $_parametros["agenda-usuario"]);
+                $statement->bindParam(9, $_parametros["agenda-assunto"]);
+                $statement->bindParam(10, $_parametros["agenda-motivo"]);
+                $statement->bindParam(11, $_parametros["agenda-id"]);
+                $statement->execute();
+                ?>
+                <div class="modal-dialog">
+                    <div class="modal-content text-center">
+                        <div class="modal-body" id="imagem-carregando">
+                            <div class="bg-icon pull-request">
+                                <img src="assets/images/small/img_enviado.jpg" alt="image" class="img-responsive center-block" width="200"/>
+                                <i class="fa fa-5x fa-check-circle-o"></i>
+                                <h2>Agendamento Atualizado!</h2>
+                                <button class="btn btn-default waves-effect waves-light m-l-5" tabindex="1" style="display: inline-block;" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        } catch (PDOException $e) {
+            ?>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="imagem-carregando">
+                        <h2><?="Erro: " . $e->getMessage()?></h2>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+}
+/**
+ * Imprime Movimentos Filtro
+ */
+if ($acao["acao"] == 5) {
+
+    $documento = !empty($_parametros['agenda-documento']) ? " AND Agenda_Documento LIKE '%".$_parametros['agenda-documento']."%'" : '';
+    $prioridade = $_parametros['agenda-prioridade'] != 0 ? " AND Prioridade = '".$_parametros['agenda-prioridade']."'" : '';
+    $situacao = $_parametros['agenda-situacao'] != 0 ? " AND Agenda_Situacao = '".$_parametros['agenda-situacao']."'" : '';
+    $usuario = $_parametros['agenda-usuario'] != 0 ? " AND Agenda_CodUsuario = '".$_parametros['agenda-usuario']."'" : '';
+
+    try {
+        $consulta = $pdo->query("SELECT Agenda_ID, Agenda_Documento, Agenda_Cadastro, Agenda_DataAgenda, Agenda_Encerrado, 
+        Agenda_Usuario, Agenda_CodUsuario, Prioridade, Agenda_Situacao, Agenda_descricao, agenda_usuarioEncerramento, usuario_LOGIN 
+        FROM ".$_SESSION['BASE'].".agenda LEFT JOIN ".$_SESSION['BASE'].".usuario ON Agenda_CodUsuario = usuario_CODIGOUSUARIO WHERE Agenda_DataAgenda
+        BETWEEN '".$_parametros['agenda-dataini']."' AND '".$_parametros['agenda-datafim']."' $documento $prioridade $situacao $usuario ORDER BY Agenda_DataAgenda");
+        $retorno = $consulta->fetchAll(\PDO::FETCH_OBJ);
+        ?>
+        <h1 class="text-center">Relatório de Agenda</h1>
+        <p>Período: <?=date('d/m/Y', strtotime($_parametros['agenda-dataini'])).' - '.date('d/m/Y', strtotime($_parametros['agenda-dataini']))?> </p>
+        <table class="table table-bordered" width="90%">
+            <thead>
+            <tr style="font-size: small">
+                <th class="text-left" style="vertical-align: middle">Assunto</th>
+                <th class="text-center" style="vertical-align: middle">Data Agenda</th>
+                <th class="text-center" style="vertical-align: middle">Prioridade</th>
+                <th class="text-center" style="vertical-align: middle">Documento</th>
+                <th class="text-center" style="vertical-align: middle">Situação</th>
+                <th class="text-center" style="vertical-align: middle">Usuário</th>
+                <th class="text-center" style="vertical-align: middle">Data Encerramento</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($retorno as $row): ?>
+                <?php
+                    if ($row->Prioridade == 1) {
+                        $descricao = 'Baixa';
+                    }
+                    else if ($row->Prioridade == 2) {
+                        $descricao = 'Média';
+                    }
+                    else {
+                        $descricao = 'Alta';
+                    }
+                ?>
+                <tr style="font-size: small">
+                    <td class="text-left" style="vertical-align: middle"><?=utf8_encode(strlen($row->Agenda_descricao) > 39 ? substr($row->Agenda_descricao, 0, 37)."..." : $row->Agenda_descricao)?></td>
+                    <td class="text-center" style="vertical-align: middle"><?=date('d/m/Y',  strtotime($row->Agenda_DataAgenda))?></td>
+                    <td class="text-center" style="vertical-align: middle"><?=$descricao?></td>
+                    <td class="text-center" style="vertical-align: middle"><?=$row->Agenda_Documento?></td>
+                    <td class="text-center" style="vertical-align: middle"><?=$row->Agenda_Situacao == "1" ? "Aberto" : "Encerrado"?></td>
+                    <td class="text-center" style="vertical-align: middle"><?=$row->usuario_LOGIN?></td>
+                    <td class="actions text-center" style="vertical-align: middle"><?=!empty($row->Agenda_Encerrado) ? date('d/m/Y',  strtotime($row->Agenda_Encerrado)) : '-'?></td>
+                </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+        <?php
+    } catch (PDOException $e) {
+        ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="imagem-carregando">
+                    <h2><?="Erro: " . $e->getMessage()?></h2>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+}

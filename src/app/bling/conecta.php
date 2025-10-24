@@ -1,0 +1,36 @@
+<?php
+// Conex閬攐 com banco de dados - PHP 7
+//c贸digo desenvolvido por Maycon Braga - mayconbraga.com.br
+//d煤vidas: mayconbraga@plataformafly.com.br
+/*
+$servername = "localhost";
+$username   = "";
+$password   = "";
+$db_name    = "";
+
+$conexao = mysqli_connect($servername, $username, $password, $db_name);
+
+
+$sql_access_token = mysqli_query($conexao,"SELECT * FROM token") or die("Erro");
+$resultado_access_token	= mysqli_fetch_assoc($sql_access_token);
+
+$access_token   = $resultado_access_token['access_token'];
+$refresh_token  = $resultado_access_token['refresh_token'];
+*/
+$client_id      = 'b9853dca759bbf19c1d291ba41085c377eb6db99';
+$client_secret  = 'c931c104d8bfe576ffb61e91dc82828139e4097f3e2a83aa7724381704d8';
+
+$conexao = mysql_connect("localhost","root","ptpr50!@") ;
+mysql_select_db($_SESSION['BASE'],$conexao) ;
+
+$consulta = "SELECT * FROM minhaos_demo.token where idlogin = '9000'  ";
+$executa = mysql_query($consulta) or die (mysql_error());
+while($rstP = mysql_fetch_array($executa)){ 
+   // echo $rstP['id'];
+    
+    $access_token   = $rstP['access_token'];
+    $refresh_token  = $rstP['refresh_token'];
+    echo "XXXXXXXXXXXXXX CONECTA  $refresh_token<>";
+  
+}
+?>

@@ -1,0 +1,60 @@
+FROM php:8.2-apache
+LABEL maintainer="Prisma DevOps <contato@sistemaprisma.com.br>"
+
+# Envivonment Variables
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_HOME=./.composer
+ENV COMPOSER_MEMORY_LIMIT=-1
+ENV DOCKER_ENTRYPOINT=/usr/local/bin/docker-php-entrypoint
+ENV APACHE_LOG_DIR=/var/www/html/logs
+ENV WORKDIR=/var/www/html
+ENV TZ America/Sao_Paulo
+
+# set timezone
+RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
+
+# Set working directory
+WORKDIR ${WORKDIR}
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+  build-essential libpng-dev \
+  libjpeg62-turbo-dev libfreetype6-dev \
+  libzip-dev libxml2-dev locales \
+  zip jpegoptim optipng pngquant gifsicle \
+  vim unzip git cron curl default-mysql-client \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy config files
+COPY ./docker/web/etc/apache2/prisma-local.conf /etc/apache2/sites-available/
+COPY ./docker/web/etc/php/php.ini $PHP_INI_DIR
+COPY --chmod=644 ./docker/web/etc/cron.d/local.conf /etc/cron.d/root.conf
+
+# Apache site config
+RUN a2ensite prisma-local.conf 
+RUN a2dissite 000-default.conf
+RUN a2enmod rewrite
+RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
+  && a2enconf servername
+
+# Install extensions
+RUN docker-php-ext-configure zip \
+  && docker-php-ext-install zip \
+  && docker-php-ext-install mysqli \
+  && docker-php-ext-install soap \
+  && docker-php-ext-configure gd --with-freetype --with-jpeg \
+  && docker-php-ext-install pdo_mysql exif pcntl gd
+
+# Get composer ~ /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Cron config
+RUN crontab /etc/cron.d/root.conf
+
+# Add commands to docker-entrypoint.sh
+COPY ./docker/web/scripts/add-to-entrypoint-local.sh /tmp/add-to-entrypoint.sh
+COPY --chmod=755 ./docker/web/scripts/entrypoint-wrapper.sh /usr/local/bin/entrypoint-wrapper.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint-wrapper.sh /tmp/add-to-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint-wrapper.sh"]
+CMD ["apache2-foreground"]

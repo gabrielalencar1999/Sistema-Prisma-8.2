@@ -1,0 +1,2 @@
+
+data={"retorno":{"estoques":[{"estoque":{"id":16263646523,"codigo":"10","nome":"PRODUTO TESTE","estoqueAtual":39,"depositos":[{"deposito":{"desconsiderar":"N","id":"14887729266","nome":"Geral","saldo":39,"saldoVirtual":39}}]}}]}}

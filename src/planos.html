@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="SISTEMA PRISMA - Para gestão Autorizadas  ">
+        <meta name="author" content="Robson Sales - CEO Prisma Gestão">
+        <meta name="keywords" content="ERP, sistema gestao, prisma sistema, automatização, sistema para empresa, linx, hiper, gestão, totvs, gestao empresarial, frente de caixa, pdv, notas fiscais, nf-e, nfc-e, nfs-e, balanca, impressora, sistema para mercado, sistema para açogue, sistema para bar, sistema para bares, sistema para restaurante, sistema para varejo, sistema para pizzaria, sistema para lava-car, emissao notas ficasis, erp , Sistema integrado de gestão empresarial, automatização empresarial, vhsys,calculadora, calculadora de carteira, vendedor externo , vendedor , trabalho remoto , trabalho, carteira de clientes, programa, parceria sistema, renda passiva, frente de caixa, sistema para bar, sistema para loja de roupa, sistema de aluguel">
+
+        <link rel="shortcut icon" href="images/Prisma_icon.png">
+
+        <title>Sistema Prisma </title>
+        <!-- Google Fonts -->
+        
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Owl Carousel CSS -->
+        <link href="css/owl.carousel.css" rel="stylesheet">
+        <link href="css/icons.css" rel="stylesheet">
+        <link href="css/owl.theme.default.min.css" rel="stylesheet">
+
+        <!-- Icon CSS -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/style.css" rel="stylesheet">
+
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+		<style>
+            
+			@media only screen and (max-width: 767px) {
+			  #navbar-header{
+				width:105% !important;
+			  }
+			}
+			#navbar-header{
+				width:50%;
+			}
+			
+			.btn-customBlack{
+				padding: 8px 24px !important;
+				background-color: #797979;
+				border: 2px solid #797979 !important;
+				color: #ffffff;
+				border-radius: 50px;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				transition:0.3s;
+			}
+			.btn-customBlack:hover{
+				color:#797979;
+				background-color:transparent;
+			}
+			
+			.btn-customOrange{
+				padding: 8px 24px !important;
+				background-color: #ff6a00;
+				border: 2px solid #ff6a00 !important;
+				color: #ffffff;
+				border-radius: 50px;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				transition:0.3s;
+			}
+			.btn-customOrange:hover{
+				color:#ff6a00;
+				background-color:transparent;
+			}
+			
+			.btn-customBlue{
+				padding: 8px 24px !important;
+				background-color: #1996F9;
+				border: 2px solid #1996F9 !important;
+				color: #ffffff;
+				border-radius: 50px;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				transition:0.3s;
+			}
+			.btn-customBlue:hover{
+				color:#FFF;
+			}
+			
+			.btn-customRed{
+				padding: 8px 24px !important;
+				background-color: #1f2044;
+				border: 2px solid #1f2044 !important;
+				color: #ffffff;
+				border-radius: 50px;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				transition:0.3s;
+			}
+			.btn-customRed:hover{
+				color:#1f2044;
+				background-color:transparent;
+			}
+			
+			
+			.wid{
+				width:180px;
+			}.wid2{
+				width:130px;
+			}
+
+			
+			.btn-red {
+			  padding: 8px 24px !important;
+			  border: 2px solid #1f2044 !important;
+			  border-radius: 50px;
+			  font-weight: 500;
+			  text-transform: uppercase;
+			  letter-spacing: 0.04em;
+			  background-color: transparent !important;
+			  color: #1f2044 !important;
+			}
+
+			.btn-red:hover {
+			  background-color: #1f2044 !important;
+			  color: #ffffff !important;
+			}
+			.btn-min{
+				border-radius:4px;
+				padding:8px !important;
+				font-size:8px;
+			}
+			
+			.wppMobile{
+				margin-top:200px !important;
+				margin-left:90px !important;
+			}
+			.wppDesktop{
+				margin-top:80px !important;
+			}
+			
+			.pcla{
+			 font-weight:400;
+			}
+			.features-box{
+				background-color:#FAFAFA;
+				border:1px solid #F1F1F1;
+				border-radius:8px;
+				
+				padding:18px;
+			}
+
+         
+
+           
+			.pad{
+				margin-top:5%;
+			}
+
+            .centralizarImagem { 
+                display:         flex;
+                display: -webkit-flex; /* Garante compatibilidade com navegador Safari. */
+
+                justify-content: center;
+                align-items: center;
+            }
+
+            .exp {
+    padding: 0;
+    margin: 0;
+    font-family: gilroy-black;
+    font-family: var(--font-secondary-strong);
+    color: #0b63d6;
+    color: var(--color-light);
+    font-size: 56px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+    .exp1 {
+        padding: 0;
+        margin: 0;      
+        color: var(--color-light);
+        font-size: 36px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+
+    .exp2 {
+        padding: 0;
+        margin: 0;      
+        color: var(--color-light);
+        font-size: 28px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+
+
+		</style>
+    </head>
+
+
+    <body  data-spy="scroll" data-target="#navbar-menu">
+
+        <!-- Navbar - oncontextmenu='return false'->
+        <div >
+            <div class="container">
+
+                <!-- Navbar-header -->
+         
+                <!-- end navbar-header -->
+
+                <!-- menu -->
+        
+                <!--/Menu -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- End navbar-custom -->
+
+
+
+        <!-- HOME -->
+        <section class="home bg-img-2" id="home">
+           
+            <div class="container" >
+                <div class="row" >
+                    <div class="col-sm-12">
+                        <div class="home-fullscreen">
+                            <div class="full-screen">
+                                
+                                        <div class="home-wrapper home-wrapper-alt">
+                                            <h2 id="oxe" class="font-light " style="margin-left:-0px; color: rgb(239, 240, 241); margin-top:-90px !important;"><b>Sistema gestão 100% online para assistências</b></h2>
+                                            <h4  style="margin-left:-0px !important; margin-top:-5px;color: rgb(239, 240, 241);">O Prisma Gestão foi desenvolvido especialmente para seu negócio em constante melhorias para seu dia a dia</h4>
+                                            <!----<h4 style="margin-left:-0px; margin-top:0px; font-size:22px;">PLANOS APARTIR DE <br><b style="font-size:36px; color:#ac0229;">R$ 120,00</b><span style="font-size:16px;">/mês</span></h4>--->
+                                  
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </section>
+       
+		<section class="home bg-img-2" id="homeMobile">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="home-fullscreen">
+                            <div class="full-screen">
+                                <div class="home-wrapper home-wrapper-alt">
+                                    <h2 id="oxe" class="font-light " style="margin-top:-20px !important; color:#FFF; text-align:center;"><b>Sistema gestão online para assistências</b></h2>
+									<!--<h4 style="font-size:22px; margin-top:50px; text-align:center; color:#FFF;">PLANOS APARTIR DE <br><b style="font-size:36px;">R$ 120,00</b><span style="font-size:16px;">/mês</span></h4>-->
+                                    
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END HOME -->
+	
+
+        <!-- Features -->
+        <section class="section p-t-0" id="features" style="padding:0px">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2 style="color:#1f2044;"><strong>Planos - Escolha o plano ideal para o seu negócio</strong></h2>
+                       
+                        
+                    </div>
+                </div> <!-- end row -->
+	
+
+                <div class="row" >
+                    <div class="col-sm-4" >
+                        <div class="features-box" style=" border:1px solid #dbe7f7; border-radius:5px; ">
+                            <i class="ion-ios7-star-outline" style="color:#2db91c"></i>
+                            <h4 style="color:#1f2044; font-size:18px;"><strong>Prisma Eco</strong></h4>
+                            <h3 style="color:#1f2044; font-size:24px;"><strong>R$ 189,90 mensal</strong></h3><b>Até 200 O.S mês</b>
+                           
+                            <p class="pcla">  <table class="table table2">
+                                <tbody>                
+                                    <tr>
+                                        <td><b>Acima de 200 O.S <br>adicional de R$ 0,30 por O.S</b></td>
+                                        
+                                    </tr>
+                                    
+                                        <tr>
+                                            <td>O.S na situação <b>cancelada</b> dentro mês, não são contabilizadas     
+                                        </td>
+                               
+                            </tbody></table></p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="features-box" style=" border:1px solid #dbe7f7; border-radius:5px; ">
+                            <i class="ion-ios7-star-half" style="color: #e97e0f;"></i>
+                            <h4 style="color:#1f2044; font-size:18px;"><strong>Prisma P</strong></h4>
+                            <h3 style="color:#1f2044; font-size:24px;"><strong>R$ 289,90 mensal</strong></h3><b>Até 700 O.S mês</b>
+                           
+                            <p class="pcla">  <table class="table table2">
+                                <tbody>                
+                              
+                                <tr>
+                                    <td><b>Acima de 700 O.S <br>adicional de R$ 0,30 por O.S</b></td>
+                                    
+                                </tr>
+         
+                                <tr>
+                                    <td>O.S na situação <b>cancelada</b> dentro mês, não são contabilizadas     
+                                </td>
+                               
+                            </tbody></table>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="features-box" style=" border:1px solid #dbe7f7; border-radius:5px; ">
+                            <i class="ion-ios7-star" style="color: #39beff;"></i>
+                            <h4 style="color:#1f2044; font-size:18px;"><strong>Prisma Turbo</strong></h4>
+                            <h3 style="color:#1f2044; font-size:24px;"><strong>R$ 380,00 mensal</strong></h3><b>Ilimitado</b>
+                           
+                            <p class="pcla">  <table class="table table2">
+                                <tbody>                
+                              
+                                <tr>
+                                    <td><b>Sem Limite O.S <br></b></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;<Br>
+                                        &nbsp;  <Br> &nbsp;
+
+                                    </td>
+                                   
+                                </tr>
+                               
+                            </tbody></table>
+                        </div>
+                    </div>
+
+                </div> <!-- end row -->
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p class="pcla"><strong>** Para  importação de dados entre em contato para mais detalhes ** </strong></p>
+                       
+                        
+                    </div>
+                </div> <!-- end row -->
+                
+				
+
+            </div> <!-- end container -->
+        </section>
+        
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2  ><span class="exp"><strong style="color: #1996F9;">Comece grátis por 30 dias..<!</strong></span>   </h2>
+               
+                
+            </div>
+        </div> <!-- end row -->
+    
+
+        <section class="section p-t-0" id="features">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">                       
+                        <h3 style="color:#1f2044;">Todos os planos Sistema Prisma incluem:</h3>                       
+                    </div>
+                </div> <!-- end row -->
+			
+
+                <div class="row">
+                    
+                    <div class="col-sm-3">
+                        <div class="features-box" style="min-height: 515px;">
+                            <i class="icon-notebook" style="color: #2B61EA;"></i>
+                            <h4 style="color:#2b5de9; font-size:18px;">Gestão Ordem Serviço</h4>
+                            <p class="pcla">
+                                <table class="table table2">
+                                 <tbody>                                                       
+                                      <tr><td>Cadastro Clientes</td>   
+                                      <tr><td>Abertura OS</td>
+                                      <tr><td>Regiões Atendimentos</td>  
+                                      <tr><td>Histórico Acompanhamento</td> 
+                                      <tr><td>Controle Preventivo</td>   
+                                      <tr><td>Agenda</td>   
+                                      <tr><td>Roteiro Atendimento</td>  
+                                      <tr><td>Estoque Integrado</td>   
+                                      <tr><td>Gestão Oficina</td>   
+                                      <tr><td>Gestão Atendimento Externo</td>                                
+                                    </tr>
+                                </tbody></table>
+                             </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="features-box " style="min-height: 515px;" >
+                            <i class="ti-shopping-cart-full" style="color: #2B61EA; "></i>
+                        
+                            <h4 style="color:#2b5de9; font-size:18px;">Gestão de Vendas</h4>
+                            <p class="pcla">
+                                <table class="table table2">
+                                 <tbody>                                                       
+                                      <tr><td>Gestão Pedidos</td>   
+                                      <tr><td>Frente Caixa (PDV)</td>
+                                      <tr><td>Emissão Nfc-e</td>
+                                      <tr><td>Orçamentos</td>  
+                                      <tr><td>Comissões</td> 
+                                      <tr><td>Fechamento Diário</td>   
+                                      <tr><td>Relatorio de Venda</td>        
+                                      
+
+                                    </tr>
+                                </tbody></table>
+                             </p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="features-box" style="min-height: 515px;">
+                            <i class="ion-gear-a" style="color: #2B61EA;" ></i>
+                            <h4 style="color:#2b5de9; font-size:18px;">Controle de Estoque</h4>
+                            <p class="pcla">
+                                <table class="table table2">
+                                 <tbody>                                                       
+                                      <tr><td>Gestão Móvel</td>
+                                      <tr><td>Inventário</td>   
+                                      <tr><td>Almoxarifado independentes</td>
+                                      <tr><td>Requisições</td>  
+                                      <tr><td>Endereçamentos</td> 
+                                      <tr><td>Movimentações</td> 
+                                      <tr><td>Entradas XML</td>   
+                                      <tr><td>Reserva Estoque </td>                                                                  
+                                    </tr>
+                                </tbody></table>
+                             </p>
+                          
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="features-box " style="min-height: 515px;">
+                            <i class="ti-wallet" style="color: #2B61EA;"></i>
+                            <h4 style="color:#2b5de9; font-size:18px;">Controle Financeiro</h4>
+                            <p class="pcla">
+                                <table class="table table2">
+                                 <tbody>                                                       
+                                      <tr><td>Contas a Receber</td>
+                                      <tr><td>Contas a Pagar</td>   
+                                      <tr><td>Recebimentos</td>
+                                      <tr><td>DRE</td>  
+                                      <tr><td>Emissão NF-e</td> 
+                                      <tr><td>Geração Arquivos XML</td> 
+                                      <tr><td>Conta Corrente</td> 
+                                                                                                    
+                                    </tr>
+                                </tbody></table>
+                             </p>
+                           
+                        </div>
+                    </div>
+
+                </div> <!-- end row -->
+				
+	
+			
+
+            </div> <!-- end container -->
+        </section>
+		<div class="row">
+	
+					<div class="col-sm-offset-3 col-sm-5">
+                        <h3 >Contato</h3>
+						<div style="background-color:#F3F6FA; border:1px solid #dbe7f7; border-radius:5px; padding:5px; height:140px;">
+							<table class="table">
+								<tr>
+									<td><a href="https://api.whatsapp.com/send?phone=5541991458007" target="_blank"><button class="btn btn-customRed" style="height:90px; width:100px; border-radius:4px; font-size:36px;"><i class="fa fa-whatsapp"></i></button></a></td>		
+									<td style="padding-top:30px; text-align:left; padding-left:30px; border:none;">Clique no botão a esquerda <br>para acessar o nosso WhatsApp
+                                        <br><a href="https://api.whatsapp.com/send?phone=5541991458007" target="_blank">(41) 9 9224 3276</a><br><a href="https://api.whatsapp.com/send?phone=5541991458007" target="_blank">(41) 9 9145 8007</a></td>
+								</tr>
+                              
+							</table>
+						</div>
+					</div>
+                    <!--
+					<div class="col-sm-5">
+                
+                        <h3 >Clientes</h3>
+						<div style="text-align:center;background-color:#F3F6FA; border:1px solid #dbe7f7; border-radius:5px; padding:5px; height:140px;">						 
+                            <img src="images/loja-padrao-logo-1486139617.jpg" alt="img"> 
+						</div>
+					</div>
+                -->
+			</div>
+		</div> <!-- end row -->
+		<br>
+		<br>
+		<br>
+		<br>
+		
+
+            </div>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a class="navbar-brand logo" href="index.html">
+                           <img src="images/prisma1.png" width="150px" style="float:left;">
+                        </a>
+                    </div>
+                    <div class="col-lg-6" style="text-align:center; padding-top:20px; color:#FFF; font-weight:400;">
+                       © 2010 - 2023 Prisma Gestão | Todos direitos Reservedos
+                    </div>
+                    <div class="col-lg-2" style="text-align:right; padding-right:60px;">
+                        <ul class="social-icons">
+                            <li><a href="https://www.facebook.com/PrismaGestaoEmpresarial" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/prismagestao" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </footer>
+        <!-- End Footer -->
+        
+
+        <!-- Back to top -->    
+        <a href="#" class="back-to-top" id="back-to-top"> <i class="fa fa-angle-up"></i> </a>
+
+
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Jquery easing -->                                                      
+        <script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+
+        <!-- Owl Carousel -->                                                      
+        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+
+        <!--sticky header-->
+        <script type="text/javascript" src="js/jquery.sticky.js"></script>
+
+
+        <!--common script for all pages-->
+        <script src="js/jquery.app.js"></script>
+		<script>
+			function mark(div,botao){
+			
+			  var nomeDiv = "#" + div;
+			  var nomebotao = "#" + botao;
+			  
+			  var valorDiv = $(nomeDiv).val();
+			  
+			  if(valorDiv == "0"){
+				$(nomeDiv).val('1');
+				$(nomebotao).css("background-color","#262626");
+				$(nomebotao).css("color","#FFF");
+			  }else{
+				$(nomeDiv).val('0');
+				$(nomebotao).css("background-color","#FFF");
+				$(nomebotao).css("color","#3D3D3D");
+			  }
+			  
+			  
+			}
+		
+			
+			function maskTel(valor){
+					
+					var valor = valor.replace(/[^\d]+/g,'');
+					var tamanho = valor.length;
+
+					
+					if(tamanho > 9){
+						
+						p1 = valor.substr(0,2);
+						p2 = valor.substr(2,1);
+						p3 = valor.substr(3,4);
+						p4 = valor.substr(7,4);
+						
+						if(p1 != ""){
+							if(p2 != ""){					
+								if(p3 != ""){
+									if(p4 != ""){
+										$('#wpp').val('(' + p1 +')' + ' ' + p2 + ' ' + p3 + ' ' + p4);	
+									}else{
+										$('#wpp').val('(' + p1 +')' + ' ' + p2 + ' ' + p3);
+									}	
+								}else{
+									$('#wpp').val('(' + p1 +')' + ' ' + p2);
+								}
+							}						
+						}else{
+							$('#wpp').val("");
+						}	
+					
+					}else{
+						p1 = valor.substr(0,2);
+						p2 = valor.substr(2,4);
+						p3 = valor.substr(6,4);	
+						
+						if(p1 != ""){
+							if(p2 != ""){					
+								if(p3 != ""){
+									$('#wpp').val('(' + p1 +')' + ' ' + p2 + ' ' + p3);	
+								}else{
+									$('#wpp').val('(' + p1 +')' + ' ' + p2);
+								}
+							}					
+						}else{
+							$('#wpp').val("");
+						}		
+					}	
+			}
+		</script>
+        <script type="text/javascript">
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                responsive:{
+                    0:{
+                        items:1
+                    }
+                }
+            })
+        </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HW0VJXGJHC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HW0VJXGJHC');
+</script>	
+    </body>
+</html>

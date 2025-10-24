@@ -1,0 +1,222 @@
+			body{
+				margin-top:5px;
+				 background-image: url('../img/wallpapperPet.png');
+				background-repeat: repeat;
+				
+				
+			}
+			.icon-size-fullscreen{
+				color:#FFF;
+				font-size:24px;
+				cursor:pointer;
+			}
+			.full{
+				text-align:center;
+				width:30px;
+				padding-top:10px;
+				padding-bottom:10px;
+				float:left;
+			}
+			.full:hover{
+				background-color:rgba(234, 237, 240, 0.1);
+			}
+			.container-fluid{
+				padding:2%; 
+				padding-top:0%; 
+			}
+			.stat{
+				border-radius:50%;
+				padding:1px 7px 1px 7px;
+				cursor:no-allowed;
+			}
+			.table{
+				 font-size:12px;
+				 opacity:0.9;
+			}
+			.lin{
+				border-bottom:1px solid #c1c1c1; !important;
+			}
+			
+
+			
+			.o2{
+				background-color:#FFF; 
+				padding:10px; 
+				border-radius:4px;
+				-webkit-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+			}
+			.o3{
+				background-color:#FFF; 
+				padding:10px; 
+				border-radius:4px 4px 0px 0px;
+				-webkit-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);				
+			}
+			.o4{
+				background-color:#00a8e6; 
+				padding:10px; 
+				border-radius:0px 0px 4px 4px;
+				color:#FFF;
+				-webkit-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);				
+			}
+			.top{
+				margin-top:2%;
+			}
+			.default{
+				padding:0px;
+				padding-top:5px;
+				color:#474747;
+				font-size:12px;
+			}
+			.valorT{
+				background-color:#444343;
+				height:19%; 
+				border-radius:4px;
+				font-size:36px;
+				color:#FFF;
+				text-align:center;
+				padding:30px;
+				font-weight:bold;
+				opacity:0.9;
+				-webkit-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);				
+			}
+			.relogio{
+				text-align:center;
+				color:#FFF;
+				padding-top:10px;
+				font-weight:400;
+			}
+			.statusCaixa{
+				text-align:right;
+				color:#3D3D3D;
+				padding-top:10px;
+				font-weight:bold;
+			}
+			.yellow{
+				padding:0px;
+				padding-top:5px;
+				color:#fbed13;
+				font-size:14px;
+			}
+			.btn-white{
+				background-color:#FFF;
+				height:50px;
+				color:#535759;
+				font-size:12px;
+			}
+			.btn-white:hover{
+				background-color:#DBDBDB;
+			}
+			.btn-primary{
+				background-color:#00a8e6;
+				border-color:#DBDBDB;
+			}
+			.btn-primary:hover{
+				background-color:#d57a2b;
+				border-color:#00a8e6;
+			}
+			.btn-primary:active{
+				background-color:#d57a2b !important;
+				border-color:#00a8e6 !important;
+			}
+			.btn-primary:focus{
+				background-color:#d57a2b !important;
+				border-color:#00a8e6 !important;
+			}
+			
+			.fundo{
+				background-color:#444343;
+				height:68.5%; 
+				border-radius:4px;
+				padding:30px;
+				opacity:0.9;
+				-webkit-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+			}
+			.fundo1{
+				background-color:white;
+				height:79%;
+				border-radius:4px;
+				overflow-y:auto;
+				-webkit-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.1);
+				padding-right:0px;
+			}
+			
+			.barraLateral{
+				background-color:#535759;
+				color:#FFF;
+				position:absolute;
+				right:0;
+				padding:14px;
+				font-size:21px;
+				cursor:pointer;
+			}
+			.barraLateral:hover{
+				color:#00A8E6;
+			}
+			
+			
+			@media only screen and (min-width: 992px) {
+			  body {
+				overflow:hidden;
+			  }
+			  .space{
+				  display:none;
+			  }
+
+			}
+			
+			.green{
+				background-color:#2FFF00;
+			}
+			.red{
+				background-color:#FF0000;
+			}
+			.orange{
+				background-color:#FF8000;
+			}
+			
+			label{
+				font-size:12px;
+			}
+			.rr{
+				font-size:18px;
+			}
+			.rr2{
+				font-size:18px;
+				color:#444343;
+			}
+			
+			.style1{
+				border:1px solid #BABABA;
+				border-radius:4px;
+				padding:10px;
+				height:375px;
+				overflow-y:auto;
+				overflow-x:hidden; 
+			}
+			.hid{
+				display:none;
+			}
+			.delclass{
+				opacity:0;
+			}
+			.desclass{
+				opacity:0;
+			}
+			a{
+				color:#00a8e6;
+			}
+			a:hover{
+				color:#d57a2b;
+			}

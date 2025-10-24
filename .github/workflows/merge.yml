@@ -1,0 +1,37 @@
+name: ✅ Merge Production to Staging
+
+on:
+  push:
+    branches:
+      - production 
+
+jobs:
+  merge:
+    name: Merge branches
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Checkout staging branch
+        run: |
+          git fetch origin staging
+          git checkout staging
+
+      - name: Merge production into staging
+        run: |
+          git merge -Xtheirs origin/production --allow-unrelated-histories
+
+      - name: Push the changes to staging
+        run: |
+          git push origin staging
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

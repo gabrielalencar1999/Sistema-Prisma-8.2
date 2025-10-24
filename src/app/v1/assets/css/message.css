@@ -1,0 +1,31 @@
+.message {
+    display: block;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.message.success {
+    color: #505458;
+    font-size: xx-large;
+    font-weight: lighter;
+}
+
+.message.info {
+    color: #ff9f43;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.icon-info {
+    color: #ff9f43;
+}
+
+.message.error {
+    color: #ee5253;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.icon-error {
+    color: #ee5253;
+}

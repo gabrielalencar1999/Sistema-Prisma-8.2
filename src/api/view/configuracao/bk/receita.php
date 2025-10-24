@@ -1,0 +1,284 @@
+<?php include("../../api/config/iconexao.php")?>
+<!DOCTYPE html>
+<html>
+<?php require_once('header.php')?>
+<link href="assets/plugins/summernote/summernote.css" rel="stylesheet" />
+<body >
+<?php require_once('navigatorbar.php')?>
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4 class="page-title m-t-15">Receituários</h4>
+                <p class="text-muted page-title-alt">Lista Receituário.</p>
+            </div>
+            <div class="btn-group pull-right m-t-20">
+                <div class="m-b-30">
+                    <button class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#custom-modal-incluir" onclick="nova_receita();"><span class="btn-label"><i class="fa fa-plus"></i></span>Incluir</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-box table-responsive" id="grupo-lista">
+                    <div class="bg-icon pull-request text-center">
+                        <img src="assets/images/loading.gif" class="img-responsive center-block" width="200" alt="imagem de carregamento, aguarde.">
+                        <h2>Aguarde, carregando dados...</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Inclui-->
+<div id="custom-modal-incluir" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog text-left modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Receiturario </h4>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0)" method="post" enctype="multipart/form-data" name="form-inclui" id="form-inclui">
+                <textarea style="display:none;" id="_receituario" name="_receituario"></textarea>
+                <input type="hidden" id="grupo-id" name="grupo-id" value="">
+                <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="grupo-titulo" class="control-label">Titulo:</label>
+                                <input type="text" class="form-control" name="grupo-titulo" id="grupo-titulo" placeholder="Informe titulo receita" value="">
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card-box m-t-20">
+                                                <div class="p-20">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <div class="summernote" id="summernote">
+                                                                <h5>Digite Aqui...</h5>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- End row -->
+
+
+                                </div> <!-- end Col-9 -->
+
+                            </div><!-- End row -->
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" data-toggle="modal" data-target="#custom-modal-result" onclick="_incluir()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Excluir-->
+<div id="custom-modal-excluir" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="modal-body">
+                <div id="result-exclui" class="result">
+                    <div class="bg-icon pull-request">
+                        <i class="md-5x  md-info-outline"></i>
+                    </div>
+                    <h2>Deseja realmente excluir o receita? </h2>
+                    <p>
+                        <button class="cancel btn btn-lg btn-white btn-md waves-effect" tabindex="2" style="display: inline-block;" data-dismiss="modal">Cancelar</button>
+                        <button class="confirm btn btn-lg btn-danger btn-md waves-effect waves-light" tabindex="1" style="display: inline-block;" data-dismiss="modal" data-toggle="modal" data-target="#custom-modal-result" onclick="_excluir();">Excluir</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Retorno -->
+<div id="custom-modal-result" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="modal-body">
+                <div class="result">
+                    <div class="bg-icon pull-request">
+                        <img src="assets/images/loading.gif" class="img-responsive center-block" width="200" alt="imagem de carregamento, aguarde.">
+                        <h2>Aguarde, carregando dados...</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form  id="form1" name="form1" method="post" action="">
+    <input type="hidden" id="_keyform" name="_keyform"  value="">
+    <input type="hidden" id="_chaveid" name="_chaveid"  value="">
+    <input type="hidden" id="id-altera" name="id-altera" value="">
+    <input type="hidden" id="id-exclusao" name="id-exclusao" value="">
+    
+</form>
+
+<!-- jQuery  -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/detect.js"></script>
+<script src="assets/js/fastclick.js"></script>
+<script src="assets/js/jquery.slimscroll.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/waves.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+<script src="assets/js/jquery.scrollTo.min.js"></script>
+<script src="assets/js/routes.js"></script>
+
+<!-- Modal-Effect -->
+<script src="assets/plugins/custombox/js/custombox.min.js"></script>
+<script src="assets/plugins/custombox/js/legacy.min.js"></script>
+
+<!--Datatables-->
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="assets/plugins/datatables/responsive.bootstrap.min.js"></script>
+
+
+    <!--Summernote js-->
+    <script src="assets/plugins/summernote/summernote.min.js"></script>
+
+<!-- App core js -->
+<script src="assets/js/jquery.core.js"></script>
+<script src="assets/js/jquery.app.js"></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        _lista();
+    }
+    
+    jQuery(document).ready(function() {
+
+$('.summernote').summernote({          
+  
+    height: 250, // set editor height
+    minHeight: null, // set minimum height of editor
+    maxHeight: null, // set maximum height of editor
+    focus: false // set focus to editable area after initializing summernote
+});
+
+$('.inline-editor').summernote({
+    airMode: true
+});
+$('.note-btn').removeAttr('title');
+
+});
+
+    function _buscadados(id) {
+    
+        $('#id-altera').val(id);
+        var $_keyid = "receita_00002";
+        var dados = $("#form1 :input").serializeArray();
+        dados = JSON.stringify(dados);
+        $.post("page_return.php", {_keyform:$_keyid,dados:dados, acao: 5},
+            function(result){                
+                var variaveis = result.split("|");
+          
+                $('#grupo-titulo').val(variaveis[0]);
+                $('#grupo-id').val(variaveis[1]);
+               
+        });
+
+        $.post("page_return.php", {_keyform:$_keyid,dados:dados, acao: 0},
+            function(result){                
+               
+                $('#custom-modal-incluir').modal('show');
+                $(".summernote").summernote("code", result);
+               
+               
+        });
+    }
+    function nova_receita(){
+        $('#grupo-titulo').val("");
+        $('#grupo-id').val("");
+        $(".summernote").summernote("code", "");
+
+    }
+    function _incluir() {
+      
+        $('#_receituario').val($('#summernote').summernote('code'));
+        var $_keyid = "receita_00002";
+        var dados = $("#form-inclui :input").serializeArray();
+        dados = JSON.stringify(dados);
+        var ac = 1;
+     
+        if ($('#id-altera').val() == '') {
+            ac = 1;
+        }else{
+            ac = 3;
+            $('#id-altera').val('');
+        }
+
+        $.post("page_return.php", {_keyform:$_keyid,dados:dados, acao: ac},
+            function(result){
+                $("#custom-modal-result").html(result);
+                $("#form-inclui :input").val("")
+                _lista();
+        });
+    }
+
+    function _lista() {
+        var $_keyid = "receita_00002";
+        $.post("page_return.php", {_keyform:$_keyid, acao: 2},
+            function(result){
+                $("#grupo-lista").html(result);
+                $('#datatable-responsive').DataTable();
+        });
+    }
+
+    function _altera() {
+        $('#_receituario').val($('#summernote').summernote('code'));
+        var $_keyid = "receita_00002";
+        var dados = $("#form-altera :input").serializeArray();
+        dados = JSON.stringify(dados);
+
+        $.post("page_return.php", {_keyform:$_keyid,dados:dados, acao: 3},
+            function(result){
+                alert(result);
+                $("#custom-modal-result").html(result);
+                _lista();
+        });
+    }
+
+    function _idexcluir(id) {
+        $('#id-exclusao').val(id);
+    }
+
+    function _excluir() {
+        var $_keyid = "receita_00002";
+        var dados = $("#form1 :input").serializeArray();
+        dados = JSON.stringify(dados);
+
+        $.post("page_return.php", {_keyform:$_keyid,dados:dados, acao: 4},
+            function(result){
+                $("#custom-modal-result").html(result);
+                _lista();
+        });
+    }
+</script>
+
+</body>
+</html>
