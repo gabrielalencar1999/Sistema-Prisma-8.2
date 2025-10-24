@@ -1,5 +1,44 @@
-**/.idea
-php_errors.log
-**/vendor
-**/logs
-**/.composer
+# Environment
+.env
+*.env
+
+# Composer
+src/api/vendor/
+composer.lock
+
+# Logs
+logs/
+**/logs/
+*.log
+
+# Docker data/overrides
+docker/mysql/data/
+aws/
+.docker/
+*.local
+*.override.yml
+*docker-compose.override.yml
+
+# Node / front-end
+node_modules/
+**/node_modules/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+
+# Archives / backups
+*.zip
+*.rar
+*.bk
+*.bak
+
+# Misc cache
+.cache/
+*.tmp
