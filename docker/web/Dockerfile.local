@@ -38,6 +38,11 @@ RUN a2enmod rewrite
 RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
   && a2enconf servername
 
+# Ensure Apache log directory exists
+RUN mkdir -p ${APACHE_LOG_DIR} \
+  && touch ${APACHE_LOG_DIR}/error.log ${APACHE_LOG_DIR}/access.log \
+  && chown -R www-data:www-data ${APACHE_LOG_DIR}
+
 # Install extensions
 RUN docker-php-ext-configure zip \
   && docker-php-ext-install zip \
