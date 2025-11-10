@@ -6,6 +6,14 @@
 
 Este projeto utiliza Docker Compose e roda com PHP 8.2 (Apache), MySQL 8 e Nginx como proxy.
 
+## Produção (visão geral)
+- Host: WHM/cPanel + Docker/Compose (AlmaLinux).
+- Domínio raiz serve o Prisma; o Laravel é servido em `/app`.
+- Proxy Apache (WHM):
+  - `/app/` → `http://127.0.0.1:8082/` (stack Laravel)
+  - `/` → `http://127.0.0.1:8080/` (stack Prisma)
+- SSL via AutoSSL. `.env` do servidor fica fora do Git (ignorado localmente).
+
 ### Requisitos
 - Windows 10/11, macOS ou Linux
 - Docker Desktop (ou Docker Engine + Docker Compose v2)
@@ -17,7 +25,7 @@ Este projeto utiliza Docker Compose e roda com PHP 8.2 (Apache), MySQL 8 e Nginx
 - nginx: proxy HTTP para o `web` (expõe a porta 8080)
 
 ## Primeira execução
-1) Crie um arquivo `.env` na raiz com os valores mínimos:
+1) Crie um arquivo `.env` na raiz com os valores mínimos (ou copie de `.env.example` se existir):
 ```env
 APP_NAME=prisma
 MYSQL_ROOT_PASSWORD=troque_esta_senha
@@ -96,3 +104,10 @@ Windows (Prompt como Administrador):
 echo 127.0.0.1  prisma.local >> C:\Windows\System32\drivers\etc\hosts
 ```
 Acesse: http://prisma.local:8080
+
+## Notas de produção (resumo)
+- Nomes únicos: suba com `-p` (ex.: `docker compose -p prisma82 up -d`) e/ou `APP_NAME` distinto.
+- Logs: crie o diretório montado para logs (ex.: `./src/logs`) antes de subir.
+- DB externo: use `DB_HOST=host.docker.internal` e `extra_hosts: ["host.docker.internal:host-gateway"]` no serviço `web`.
+- Proxy no WHM: a regra de `/app/` deve vir antes da regra de `/` para evitar colisão com a pasta legada `app`.
+- SSL: emitir AutoSSL para o domínio usado.
