@@ -1,0 +1,10 @@
+DirectoryIndex index.php
+<IfModule mod_negotiation.c>
+  Options -MultiViews
+</IfModule>
+
+# debug temporário
+php_flag display_errors On
+php_value error_reporting 32767
+php_value log_errors On
+php_value error_log /var/www/html/logs/error.log
