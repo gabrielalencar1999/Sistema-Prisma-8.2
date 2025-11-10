@@ -53,6 +53,8 @@ services:
       - mysql
     volumes:
       - ./src:/var/www/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   nginx:
     depends_on:
