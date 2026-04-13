@@ -1,6 +1,6 @@
 <?php
 
-	$servidor = MYSQL_HOST;
+	$servidor = 'prisma-legacy-mysql';
 	$user_conect = MYSQL_USER;
 	$senha = MYSQL_PASSWORD;
 	$banco_conect = MYSQL_DATABASE;
