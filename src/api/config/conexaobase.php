@@ -1,9 +1,9 @@
 <?php
 
-	$servidor = MAIN_DB_HOST;
-	$user_conect = MAIN_DB_USER;
-	$senha = MAIN_DB_PASS;
-	$banco_conect = MAIN_DB_SCHEMA;
+	$servidor = MYSQL_HOST;
+	$user_conect = MYSQL_USER;
+	$senha = MYSQL_PASSWORD;
+	$banco_conect = MYSQL_DATABASE;
 	$mysqli = new mysqli($servidor, $user_conect, $senha, $banco_conect);
 	
 
